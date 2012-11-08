@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @prompt.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @prompt.content %>
+</p>
+
+
+<%= link_to 'Edit', edit_prompt_path(@prompt) %> |
+<%= link_to 'Back', prompts_path %>
