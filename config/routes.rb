@@ -1,5 +1,7 @@
 Activeprompt::Application.routes.draw do
-  resources :prompts
+  resources :prompts do
+    resources :responses
+  end
 
   get "home/index"
 
