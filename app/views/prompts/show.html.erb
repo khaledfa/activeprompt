@@ -25,6 +25,9 @@
 </div>
 <% end %>
 
+<%= @prompt.firebase %><br />
+<%= render "firebase", :firebase => @prompt.firebase %>
+
 
 <%= link_to 'Edit', edit_prompt_path(@prompt) %> |
 <%= link_to 'Back', prompts_path %>
