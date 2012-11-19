@@ -10,6 +10,10 @@
   <%= @prompt.content %>
 </p>
 
+<p>Teacher url: <%= @prompt.teacherUrl %></p>
+
+<p>Student url: <%= @prompt.studentUrl %></p>
+
 <h2>Responses</h2>
 <% @prompt.responses.each do |response| %>
   <p><%= response.comment %></p>
@@ -25,9 +29,4 @@
 </div>
 <% end %>
 
-<%= @prompt.firebase %><br />
-<%= render "firebase", :firebase => @prompt.firebase %>
-
-
 <%= link_to 'Edit', edit_prompt_path(@prompt) %> |
-<%= link_to 'Back', prompts_path %>

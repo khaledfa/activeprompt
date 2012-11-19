@@ -1,5 +1,5 @@
 class Prompt < ActiveRecord::Base
-  attr_accessible :content, :title, :firebase
+  attr_accessible :content, :title, :firebase, :teacherUrl, :studentUrl
 
   validates :title, :length => { :minimum => 5 }
 

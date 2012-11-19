@@ -25,7 +25,8 @@ class PromptsController < ApplicationController
   # GET /prompts/new.json
   def new
     @prompt = Prompt.new
-    @prompt.firebase = (0...8).map{65.+(rand(26)).chr}.join ;
+    @prompt.teacherUrl = (0...8).map{65.+(rand(26)).chr}.join ;
+    @prompt.studentUrl = (0...8).map{65.+(rand(26)).chr}.join ;
 
     respond_to do |format|
       format.html # new.html.erb
