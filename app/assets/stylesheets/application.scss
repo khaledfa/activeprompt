@@ -11,3 +11,24 @@
  *= require_self
  *= require_tree .
  */
+
+    body {max-width: 640px; margin-left: auto; margin-right: auto; margin-top: 2em;
+
+        background-color: #ccc;
+    }
+
+    .content, .bottom {
+        padding: 20px;
+    }
+    .content {
+        position: absolute;
+        top: 0px;
+        bottom: 50px;
+        width: 640px;
+        background-color: #fff;
+        overflow: scroll;
+    }
+    .bottom {
+        position: absolute;
+        bottom: 0px;
+    }
