@@ -43,6 +43,8 @@ class PromptsController < ApplicationController
   # POST /prompts.json
   def create
     @prompt = Prompt.new(params[:prompt])
+    @prompt.teacherUrl = (0...8).map{65.+(rand(26)).chr}.join ;
+    @prompt.studentUrl = (0...8).map{65.+(rand(26)).chr}.join ;
 
     respond_to do |format|
       if @prompt.save
