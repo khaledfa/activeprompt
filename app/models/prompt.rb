@@ -3,5 +3,4 @@ class Prompt < ActiveRecord::Base
 
   validates :title, :length => { :minimum => 5 }
 
-  has_many :responses
 end

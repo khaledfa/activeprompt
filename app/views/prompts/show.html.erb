@@ -14,19 +14,4 @@
 
 <p>Student url: <%= @prompt.studentUrl %></p>
 
-<h2>Responses</h2>
-<% @prompt.responses.each do |response| %>
-  <p><%= response.comment %></p>
-<% end %>
-
-<%= form_for([@prompt, @prompt.responses.build]) do |f| %>
-<div class="field">
-  <%= f.label :comment %><br/>
-  <%= f.text_field :comment %><br />
-</div>
-<div class="actions">
-  <%= f.submit %>
-</div>
-<% end %>
-
 <%= link_to 'Edit', edit_prompt_path(@prompt) %> |
