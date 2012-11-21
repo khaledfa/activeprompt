@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Activeprompt</title>
+  <title><%= yield :title %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= stylesheet_link_tag "fullscreen", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "fullscreen" %>
   <%= csrf_meta_tags %>
+
+  <script type='text/javascript' src='https://static.firebase.com/v0/firebase.js'></script>
 </head>
 <body>
 <%= yield %>

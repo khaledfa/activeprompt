@@ -1,0 +1,27 @@
+Collecting one response!
+
+<script type="text/javascript">
+  var myResponse = responses.push();
+
+  $(window).unload(function() {
+	myResponse.remove();
+  });
+
+  $(function(){
+  	$("#handle").draggable({
+		start: function(){},
+		
+		drag: function(event, ui) {
+			myResponse.set({
+				left: ui.position.left,
+				top: ui.position.top
+			});
+			},
+		
+		stop: function(){}
+  	});
+  });
+
+</script>
+
+<div id="handle" style="z-index: 1">HANDLE</div>
