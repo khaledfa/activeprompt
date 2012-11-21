@@ -1,1 +1,24 @@
-Showing all responses!
+<script type="text/javascript">
+	responses.on('child_added', function(snapshot) {
+		var ref = snapshot.ref();
+		
+		jQuery('<div/>', {
+			id: ref.name(),
+			text: snapshot.val().top + ' ' + snapshot.val().left,
+		}).appendTo("#responseZone");
+		
+		ref.on('value', function(snapshot) {
+			var response = $("#" + snapshot.ref().name());
+			
+			if (!!snapshot.val()) {
+				response.text(snapshot.val().top + ' ' + snapshot.val().left);	
+				response.offset({top: snapshot.val().top, left: snapshot.val().left});
+			} else {
+				response.remove();
+			}
+		});
+	
+	});
+</script>
+
+<div id="responseZone"></div>
