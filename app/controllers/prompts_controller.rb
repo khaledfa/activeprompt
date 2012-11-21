@@ -21,11 +21,19 @@ class PromptsController < ApplicationController
     end
   end
 
-  def show_full_screen
-    @prompt = Prompt.find(params[:id])
-
+  def show_teacher_view
+    @prompt = Prompt.find_by_teacherUrl(params[:url].upcase);
+    
     respond_to do |format|
-      format.html { render "fullscreen", :layout => "fullscreen" }
+      format.html {render "fullscreen", :layout => "fullscreen", :locals => {:showAllResponses => true}}
+    end
+  end
+
+  def show_student_view
+    @prompt = Prompt.find_by_studentUrl(params[:url].upcase);
+    
+    respond_to do |format|
+      format.html {render "fullscreen", :layout => "fullscreen", :locals => {:showAllResponses => false}}
     end
   end
 
@@ -33,8 +41,6 @@ class PromptsController < ApplicationController
   # GET /prompts/new.json
   def new
     @prompt = Prompt.new
-    @prompt.teacherUrl = (0...8).map{65.+(rand(26)).chr}.join ;
-    @prompt.studentUrl = (0...8).map{65.+(rand(26)).chr}.join ;
 
     respond_to do |format|
       format.html # new.html.erb
@@ -51,8 +57,6 @@ class PromptsController < ApplicationController
   # POST /prompts.json
   def create
     @prompt = Prompt.new(params[:prompt])
-    @prompt.teacherUrl = (0...8).map{65.+(rand(26)).chr}.join ;
-    @prompt.studentUrl = (0...8).map{65.+(rand(26)).chr}.join ;
 
     respond_to do |format|
       if @prompt.save

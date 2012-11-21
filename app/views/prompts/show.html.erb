@@ -10,9 +10,18 @@
   <%= @prompt.text %>
 </p>
 
-<p>Teacher url: <%= @prompt.teacherUrl %></p>
+Teacher url:
+<a href="/<%= @prompt.teacherUrl %>" target="_blank">
+	<script>
+	  document.write( window.location.hostname + (window.location.port ? ':' + window.location.port : '') + '/' + '<%= @prompt.teacherUrl %>');
+	</script></a>
+(go here to see all responses)<br/>
 
-<p>Student url: <%= @prompt.studentUrl %></p>
+Student url: 
+<script>
+  document.write( window.location.hostname + (window.location.port ? ':' + window.location.port : '') + '/' + '<%= @prompt.studentUrl %>');
+</script>
+(give to students to enter responses)<br/>
 
 <%= image_tag @prompt.image %>
 <br />

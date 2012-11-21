@@ -3,8 +3,9 @@ Activeprompt::Application.routes.draw do
   resources :prompts do
   end
 
-  match "prompts/:id/show_full_screen", :controller => 'prompts', :action => 'show_full_screen', :id => /[0-9]+/
-
+  match ":url", :controller => 'prompts', :action => 'show_teacher_view', :url => /[tT][a-zA-Z]+/
+  match ":url", :controller => 'prompts', :action => 'show_student_view', :url => /[sS][a-zA-Z]+/
+  
   get "home/index"
 
   # The priority is based upon order of creation:
