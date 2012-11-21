@@ -1,7 +1,9 @@
 Activeprompt::Application.routes.draw do
+
   resources :prompts do
-    resources :responses
   end
+
+  match "prompts/:id/show_full_screen", :controller => 'prompts', :action => 'show_full_screen', :id => /[0-9]+/
 
   get "home/index"
 

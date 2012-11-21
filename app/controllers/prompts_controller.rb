@@ -21,6 +21,14 @@ class PromptsController < ApplicationController
     end
   end
 
+  def show_full_screen
+    @prompt = Prompt.find(params[:id])
+
+    respond_to do |format|
+      format.html { render "fullscreen", :layout => "fullscreen" }
+    end
+  end
+
   # GET /prompts/new
   # GET /prompts/new.json
   def new
