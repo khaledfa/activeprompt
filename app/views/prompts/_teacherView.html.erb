@@ -2,8 +2,10 @@
 	responses.on('child_added', function(snapshot) {
 		var ref = snapshot.ref();
 		
-		jQuery('<div/>', {
+		jQuery('<img/>', {
 			id: ref.name(),
+			src: "/assets/red_dot.png",
+			style: "opacity: 0.4; filter:alpha(opacity=40);",
 			text: snapshot.val().top + ' ' + snapshot.val().left,
 		}).appendTo("#responseZone");
 		
