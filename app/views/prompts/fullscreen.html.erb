@@ -12,9 +12,13 @@ var responses = new Firebase('https://activeprompt.firebaseio.com/<%= @prompt.st
   <%= render 'studentView' %>
 <% end %>
 
-<div style="position: absolute; height: 100%; width: 100%;">
-<%= image_tag(@prompt.image, style: "position: absolute; top: 0px; bottom: 100px;") %>
-<div style="position: relative; height: 100px; bottom: 0px;">
-<%= @prompt.text %>
-</div>
+<div style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px;">
+	<div style="position: absolute; top: 0px; bottom: 100px; left: 0px; right: 0px; overflow: scroll;">
+		<div id="prompt_image_container" style="display: inline-block;">
+			<%= image_tag(@prompt.image, style: "position: relative", id: "prompt_image") %>
+		</div>
+	</div>
+	<div style="position: absolute; height: 100px; bottom: 0px;">
+		<%= @prompt.text %>
+	</div>
 </div>

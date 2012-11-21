@@ -6,7 +6,13 @@
   });
 
   $(function(){
+		$("#prompt_image_container").append("<img id=\"handle\" style=\"z-index: 1; top: 0px; left: 0px; position: absolute\" src=\"/assets/red_dot.png\"/>");
+	});
+	
+  $(function(){
   	$("#handle").draggable({
+	    containment: "#prompt_image_container", 
+	
 		start: function(){},
 		
 		drag: function(event, ui) {
@@ -21,5 +27,3 @@
   });
 
 </script>
-
-<img id="handle" style="z-index: 1" src="/assets/red_dot.png"/>
