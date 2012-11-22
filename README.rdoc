@@ -11,13 +11,14 @@ I (rileylark) started this because I love the idea and I needed to learn Ruby on
 This is a ruby on rails app that uses postgres.  Postgres is required by heroku, unfortunately, and it's sort of difficult to get set up.  I hope the following will be a complete setup guide.  Send me a note or a pull request with instruction fixes!
 
 1. Get ruby and rails set up: http://railsinstaller.org/
-2. Get git set up: https://help.github.com/articles/set-up-git
-3. Click "Fork" on the activeprompt repository so you can make whatever changes you want: https://github.com/rileylark/activeprompt
-4. Follow github's instructions to download ("clone") the code from your new fork (your "repository")
-5. Run "rails s" in the directory of the repository you cloned
-6. With a browser go to http://localhost:3000 to see the app
-7. Change the code, commit it with git, and push it back to github
-8. Send me a pull request when you're done with a change and I can merge it back into the master branch!
+2. Get Postgres set up (mac: http://postgresapp.com/ , windows: Sorry, you'll have to google for now)
+3. Get git set up: https://help.github.com/articles/set-up-git
+4. Click "Fork" on the activeprompt repository so you can make whatever changes you want: https://github.com/rileylark/activeprompt
+5. Follow github's instructions to download ("clone") the code from your new fork (your "repository")
+6. Run "rails s" in the directory of the repository you cloned
+7. With a browser go to http://localhost:3000 to see the app
+8. Change the code, commit it with git, and push it back to github
+9. Send me a pull request when you're done with a change and I can merge it back into the master branch!
 
 == I'm eager to help you work on this
 
