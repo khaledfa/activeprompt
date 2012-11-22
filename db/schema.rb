@@ -11,28 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121161300) do
+ActiveRecord::Schema.define(:version => 20121122000445) do
 
   create_table "prompts", :force => true do |t|
     t.string   "title"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-    t.string   "teacherUrl"
-    t.string   "studentUrl"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "text"
+    t.string   "teacherUrl"
+    t.string   "studentUrl"
   end
-
-  create_table "responses", :force => true do |t|
-    t.string   "comment"
-    t.integer  "prompt_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "responses", ["prompt_id"], :name => "index_responses_on_prompt_id"
 
 end
