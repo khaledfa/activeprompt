@@ -2,7 +2,6 @@
 
 <table>
   <tr>
-    <th>Title</th>
     <th>Text</th>
     <th></th>
     <th></th>
@@ -11,7 +10,6 @@
 
 <% @prompts.each do |prompt| %>
   <tr>
-    <td><%= prompt.title %></td>
     <td><%= prompt.text %></td>
     <td><%= link_to 'Show', prompt %></td>
     <td><%= link_to 'Edit', edit_prompt_path(prompt) %></td>
