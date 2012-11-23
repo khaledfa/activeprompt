@@ -6,16 +6,15 @@
 </p>
 
 Teacher url:
-<a href="/<%= @prompt.teacherUrl %>" target="_blank">
-	<script>
+<a href="/<%= @prompt.teacherUrl %>" target="_blank"><script>
 	  document.write( window.location.hostname + (window.location.port ? ':' + window.location.port : '') + '/' + '<%= @prompt.teacherUrl %>');
 	</script></a>
 (go here to see all responses)<br/>
 
 Student url: 
-<script>
+<a href="/<%= @prompt.studentUrl %>" target="_blank"><script>
   document.write( window.location.hostname + (window.location.port ? ':' + window.location.port : '') + '/' + '<%= @prompt.studentUrl %>');
-</script>
+</script></a>
 (give to students to enter responses)<br/>
 
 <%= image_tag @prompt.image %>
