@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 gem 'paperclip', '~> 3.0'
+gem 'aws-sdk', '~> 1.3.4'
 gem 'jquery-ui-rails'
 
 # Bundle edge Rails instead:
