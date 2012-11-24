@@ -56,7 +56,15 @@ class PromptsController < ApplicationController
   # POST /prompts
   # POST /prompts.json
   def create
-    @prompt = Prompt.new(params[:prompt])
+    if (params[:prompt]["studentUrl"]) 
+      @prompt = Prompt.find_by_studentUrl(params[:prompt]["studentUrl"])
+    end
+    
+    if (!@prompt)
+      @prompt = Prompt.new(params[:prompt])
+    else 
+      @prompt.update_attributes(params[:prompt])
+    end
 
     respond_to do |format|
       if @prompt.save

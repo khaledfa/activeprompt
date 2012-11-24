@@ -9,7 +9,12 @@ class Prompt < ActiveRecord::Base
   end
   
   def after_initialize()
-    self.teacherUrl = 'T' + (0...4).map{65.+(rand(26)).chr}.join ;
-    self.studentUrl = 'S' + (0...4).map{65.+(rand(26)).chr}.join ;
+    if (!self.teacherUrl) 
+      self.teacherUrl = 'T' + (0...4).map{65.+(rand(26)).chr}.join ;
+    end
+    
+    if (!self.studentUrl)
+      self.studentUrl = 'S' + (0...4).map{65.+(rand(26)).chr}.join ;
+    end
   end
 end

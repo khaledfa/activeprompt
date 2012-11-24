@@ -34,9 +34,18 @@ form {
 	margin-bottom: 0px;
 }
 
+.form_output {
+	visibility: hidden;
+	height: 0px;
+	width: 0px;
+}
 </style>
 
-<%= form_for(@prompt) do |f| %>
+<iframe name="form_output" class="form_output"></iframe>
+
+<%= form_for(@prompt, :html => { :multipart => true, :target => 'form_output' })  do |f| %>
+	<%= f.hidden_field :studentUrl, :value => @prompt.studentUrl %>
+	<%= f.hidden_field :teacherUrl, :value => @prompt.teacherUrl %>
   <% if @prompt.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@prompt.errors.count, "error") %> prohibited this prompt from being saved:</h2>
@@ -55,7 +64,7 @@ form {
 	<div class="numberCircle sectionNumber">1</div>
 	<div class="sectionContent">
 	<p class="lead">Upload an Image</p>
-    <%= f.file_field :image %>
+    <%= f.file_field :image, :id => "image_file" %>
 	</div>
   </div>
   <div class="step">
@@ -64,7 +73,7 @@ form {
     <p class="lead">Write a Prompt</legend>
 	<div class="input-prepend">
 		<span class="add-on">Drag the red dot to...</span>
-    <%= f.text_field :text, :placeholder => "where the ball will land"%>
+    <%= f.text_field :text, :id => "text_field", :placeholder => "where the ball will land"%>
 	</div>
 	</div>
   </div>
@@ -88,3 +97,13 @@ form {
   </div>
 </fieldset>
 <% end %>
+
+<script type="text/javascript">
+$('#image_file').change(function() {
+  $('#new_prompt').submit();
+});
+
+$('#text_field').change(function() {
+  $('#new_prompt').submit();
+});
+</script>
