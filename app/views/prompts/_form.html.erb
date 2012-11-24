@@ -1,3 +1,9 @@
+<style>
+.step {
+	padding: 15px;
+}
+</style>
+
 <%= form_for(@prompt) do |f| %>
   <% if @prompt.errors.any? %>
     <div id="error_explanation">
@@ -11,20 +17,21 @@
     </div>
   <% end %>
 <fieldset>
-  <div class="field">
-	<label>Image</label>
+  <div class="step">
+	<label>1. Upload an Image</label>
     <%= f.file_field :image %>
   </div>
-  <div class="field">
+  <div class="step">
 
-    <label>Prompt</label>
+    <label>2. Write a Prompt</label>
 	<div class="input-prepend">
 		<span class="add-on">Drag the red dot to...</span>
     <%= f.text_field :text, :placeholder => "where the ball will land"%>
 	</div>
   </div>
-  <div class="actions">
-    <%= f.submit :class => "btn btn-primary" %>
+  <div class="step">
+    <label>3. Make a link for your students</label>
+	<%= f.submit :value => "Make a link", :class => "btn btn-primary" %>
   </div>
 </fieldset>
 <% end %>
