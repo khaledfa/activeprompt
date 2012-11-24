@@ -8,6 +8,7 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap_and_overrides
  *= require_self
  *= require jquery.ui.all
  */
@@ -64,7 +65,7 @@
         width: 640px;
 		margin-left: auto;
 		margin-right: auto;
-        overflow: scroll;
+        overflow: auto;
 
 		@include shadow(rgba(0, 0, 0, 0.3));
     }
