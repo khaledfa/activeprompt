@@ -10,25 +10,65 @@
  *
  *= require_self
  *= require jquery.ui.all
- *= require_tree .
  */
 
-    body {max-width: 640px; margin-left: auto; margin-right: auto; margin-top: 2em;
+@mixin shadow($color: #333333) {
+  -moz-box-shadow: 0px 3px 6px $color;
+  -webkit-box-shadow: 0px 3px 6px $color;
+  box-shadow: 0px 3px 6px $color;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=90, Color='$color')";
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=90, Color='$color');
+}
 
-        background-color: #ccc;
-    }
+	body {
+	  background-color: #111;
+	  background-image: url(/assets/debut_dark.png);
+	  color: #eee;
+	  font-family: verdana, arial, helvetica, sans-serif;
+	  font-size: 13px;
+	  line-height: 18px;
+	}
+
+	p, ol, ul, td {
+	  font-family: verdana, arial, helvetica, sans-serif;
+	  font-size: 13px;
+	  line-height: 18px;
+	}
+
+	pre {
+	  padding: 10px;
+	  font-size: 11px;
+	}
+
+	a {
+	  color: #000;
+	  &:visited {
+	    color: #999;
+	  }
+	  &:hover {
+	    color: #000;
+	    background-color: #fff;
+	  }
+	}
 
     .content, .bottom {
         padding: 20px;
     }
     .content {
-        position: absolute;
+		background-color: #fff;
+		color: #000;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
         top: 0px;
         bottom: 50px;
         width: 640px;
-        background-color: #fff;
+		margin-left: auto;
+		margin-right: auto;
         overflow: scroll;
+
+		@include shadow(rgba(0, 0, 0, 0.3));
     }
+
     .bottom {
         position: absolute;
         bottom: 0px;
