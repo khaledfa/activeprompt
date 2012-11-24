@@ -10,16 +10,21 @@
       </ul>
     </div>
   <% end %>
-
+<fieldset>
   <div class="field">
-    <%= f.label :image %>: Students will be able to drag a red dot to a point on this image.<br />
+	<label>Image</label>
     <%= f.file_field :image %>
   </div>
   <div class="field">
-    <%= f.label :text %> (e.g. "Drag the red dot to where the arrow will hit.")<br />
-    <%= f.text_field :text %>
+
+    <label>Prompt</label>
+	<div class="input-prepend">
+		<span class="add-on">Drag the red dot to...</span>
+    <%= f.text_field :text, :placeholder => "where the ball will land"%>
+	</div>
   </div>
   <div class="actions">
-    <%= f.submit :class => "btn-large btn-primary" %>
+    <%= f.submit :class => "btn btn-primary" %>
   </div>
+</fieldset>
 <% end %>
