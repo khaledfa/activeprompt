@@ -52,20 +52,18 @@
 	  }
 	}
 
-    .content, .bottom {
-        padding: 20px;
-    }
     .content {
 		background-color: #fff;
-		color: #000;
+		color: #333;
 		-moz-border-radius: 3px;
 		border-radius: 3px;
         top: 0px;
         bottom: 50px;
-        width: 400px;
+        width: 650px;
 		margin-left: auto;
 		margin-right: auto;
-		margin-top: 40px;
+		margin-top: 50px;
+		margin-bottom: 50px;
         overflow: auto;
 
 		@include shadow(rgba(0, 0, 0, 0.3));
@@ -74,4 +72,25 @@
     .bottom {
         position: absolute;
         bottom: 0px;
+		padding: 20px;
     }
+
+	.numberCircle {
+	    -webkit-border-radius: 999px;
+	    -moz-border-radius: 999px;
+	    border-radius: 999px;
+	    behavior: url(PIE.htc);
+
+	    width: 25px;
+	    height: 25px;
+	    padding: 10px;
+
+	    background: #fff;
+	    border: 2px solid #666;
+	    color: #666;
+	    text-align: center;
+
+	    font: 25px Arial, sans-serif;
+		display: inline-block;
+		margin-right: 25px;
+	}

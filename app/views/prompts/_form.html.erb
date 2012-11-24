@@ -1,7 +1,39 @@
 <style>
 .step {
-	padding: 15px;
+	padding: 25px;
+	border: 0px;
+	
+	height: 100px;
+	margin: 0px;
 }
+
+.halfstep {
+	padding: 25px;
+	border: 0px;
+	
+	height: 50px;
+	margin: 0px;
+}
+
+
+.step:last-child {
+	border-bottom: none;
+}
+
+
+.sectionNumber {
+	vertical-align: top;
+}
+
+.sectionContent {
+	display: inline-block;
+	margin-top: 12.5px;
+}
+
+form {
+	margin-bottom: 0px;
+}
+
 </style>
 
 <%= form_for(@prompt) do |f| %>
@@ -17,21 +49,42 @@
     </div>
   <% end %>
 <fieldset>
+	<h1 class="halfstep">Make a Prompt</h1>
+	
   <div class="step">
-	<label>1. Upload an Image</label>
+	<div class="numberCircle sectionNumber">1</div>
+	<div class="sectionContent">
+	<p class="lead">Upload an Image</p>
     <%= f.file_field :image %>
+	</div>
   </div>
   <div class="step">
-
-    <label>2. Write a Prompt</label>
+	<div class="numberCircle sectionNumber">2</div>
+	<div class="sectionContent">
+    <p class="lead">Write a Prompt</legend>
 	<div class="input-prepend">
 		<span class="add-on">Drag the red dot to...</span>
     <%= f.text_field :text, :placeholder => "where the ball will land"%>
 	</div>
+	</div>
   </div>
   <div class="step">
-    <label>3. Make a link for your students</label>
-	<%= f.submit :value => "Make a link", :class => "btn btn-primary" %>
+	<div class="numberCircle sectionNumber">3</div>
+	<div class="sectionContent">
+	<p class="lead">Give this link to your students</p>
+	<a href="/<%= @prompt.studentUrl %>" target="_blank"><script>
+	  document.write( window.location.hostname + (window.location.port ? ':' + window.location.port : '') + '/' + '<%= @prompt.studentUrl %>');
+	</script></a>
+	</div>
+  </div>
+  <div class="step">
+	<div class="numberCircle sectionNumber">4</div>
+	<div class="sectionContent">
+	<p class="lead">Go here to see their responses</p>
+	<a href="/<%= @prompt.teacherUrl %>" target="_blank"><script>
+		  document.write( window.location.hostname + (window.location.port ? ':' + window.location.port : '') + '/' + '<%= @prompt.teacherUrl %>');
+		</script></a>
+	</div>
   </div>
 </fieldset>
 <% end %>
