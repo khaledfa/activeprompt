@@ -9,12 +9,14 @@ var responses = new Firebase('https://activeprompt.firebaseio.com/<%= @prompt.st
 <% end %>
 
 <div style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px;">
-	<div style="position: absolute; top: 0px; bottom: 100px; left: 0px; right: 0px; overflow: scroll;">
+	<div style="position: absolute; top: 0px; bottom: 60px; left: 0px; right: 0px; overflow: auto;">
 		<div id="prompt_image_container" style="display: inline-block;">
 			<%= image_tag(@prompt.image, style: "position: relative", id: "prompt_image") %>
 		</div>
 	</div>
-	<div style="position: absolute; height: 100px; bottom: 0px;">
-		<%= @prompt.text %>
+	<div style="position: absolute; height: 60px; bottom: 0px; left: 0px; right: 0px">
+		<p class="lead" style="text-align: center">
+		Drag the red dot to <%= @prompt.text %>
+		</p>
 	</div>
 </div>
