@@ -18,3 +18,4 @@
 //= require jquery.ui.widget
 //= require jquery.ui.mouse
 //= require jquery.ui.draggable
+//= require jquery.ui.touch-punch
