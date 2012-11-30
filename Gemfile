@@ -9,6 +9,9 @@ gem "therubyracer"
 gem "less-rails"  #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS 
 gem "twitter-bootstrap-rails"
 
+# Adds touch support quickly to jquery-draggable
+gem 'touchpunch-rails'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
