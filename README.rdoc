@@ -15,10 +15,13 @@ This is a ruby on rails app that uses postgres.  Postgres is required by heroku,
 3. Get git set up: https://help.github.com/articles/set-up-git
 4. Click "Fork" on the activeprompt repository so you can make whatever changes you want: https://github.com/rileylark/activeprompt
 5. Follow github's instructions to download ("clone") the code from your new fork (your "repository")
-6. Run "rails s" in the directory of the repository you cloned
-7. With a browser go to http://localhost:3000 to see the app
-8. Change the code, commit it with git, and push it back to github
-9. Send me a pull request when you're done with a change and I can merge it back into the master branch!
+6. Run "bundle install" in the directory of the repository you cloned
+7. Run "rails s" in the same directory to run a local copy of the server
+8. With a browser go to http://localhost:3000 to see the app
+9. Change the code, commit it with git, and push it back to github
+10. Send me a pull request when you're done with a change and I can merge it back into the master branch!
+
+Steps 1-6 only have to be done once.
 
 == I'm eager to help you work on this
 
