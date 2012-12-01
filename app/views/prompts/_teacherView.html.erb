@@ -30,8 +30,8 @@
           haveHandleSize = true;
         }
         
-        response.css("left", Math.round((snapshot.val().left * promptImage.width()) - halfHandleW) + "px");
-        response.css("top", Math.round((snapshot.val().top * promptImage.height()) - halfHandleH) + "px");
+        response.css("left", ((snapshot.val().left * promptImage.width()) - halfHandleW) + "px");
+        response.css("top", ((snapshot.val().top * promptImage.height()) - halfHandleH) + "px");
       } else {
         response.remove();
       }
