@@ -1,26 +1,25 @@
 <script type="text/javascript">
-	responses.on('child_added', function(snapshot) {
-		var ref = snapshot.ref();
-		
-		jQuery('<img/>', {
-			id: ref.name(),
-			src: "/assets/red_dot.png",
-			style: "opacity: 0.7; filter:alpha(opacity=70); z-index: 1; position: absolute",
-			text: snapshot.val().top + ' ' + snapshot.val().left,
-		}).appendTo("#prompt_image_container");
-		
-		ref.on('value', function(snapshot) {
-			var response = $("#" + snapshot.ref().name());
-			
-			if (!!snapshot.val()) {
-				response.text(snapshot.val().top + ' ' + snapshot.val().left);	
-
-				response.css("top", snapshot.val().top + "px");
-				response.css("left", snapshot.val().left + "px");
-			} else {
-				response.remove();
-			}
-		});
-	
-	});
+  responses.on('child_added', function(snapshot) {
+    var ref = snapshot.ref();
+    
+    jQuery('<img/>', {
+      id: ref.name(),
+      src: "/assets/red_dot.png",
+      style: "opacity: 0.7; filter:alpha(opacity=70); z-index: 1; position: absolute",
+      text: snapshot.val().top + ' ' + snapshot.val().left,
+    }).appendTo("#prompt_image_container");
+    
+    ref.on('value', function(snapshot) {
+      var response = $("#" + snapshot.ref().name());
+      
+      if (!!snapshot.val()) {
+        response.text(snapshot.val().top + ' ' + snapshot.val().left);	
+       
+        response.css("top", snapshot.val().top + "px");
+        response.css("left", snapshot.val().left + "px");
+      } else {
+        response.remove();
+      }
+    });
+  });
 </script>

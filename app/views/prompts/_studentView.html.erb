@@ -2,28 +2,27 @@
   var myResponse = responses.push();
 
   $(window).unload(function() {
-	myResponse.remove();
+    myResponse.remove();
   });
 
   $(function(){
-		$("#prompt_image_container").append("<img id=\"handle\" style=\"z-index: 1; top: 0px; left: 0px; position: absolute\" src=\"/assets/red_dot.png\"/>");
-	});
-	
-  $(function(){
-  	$("#handle").draggable({
-	    containment: "#prompt_image_container", 
-	
-		start: function(){},
-		
-		drag: function(event, ui) {
-			myResponse.set({
-				left: ui.position.left,
-				top: ui.position.top
-			});
-			},
-		
-		stop: function(){}
-  	});
+    $("#prompt_image_container").append("<img id=\"handle\" style=\"z-index: 1; top: 0px; left: 0px; position: absolute\" src=\"/assets/red_dot.png\"/>");
   });
 
+  $(function(){
+    $("#handle").draggable({
+      containment: "#prompt_image_container", 
+      
+      start: function(){},
+      
+      drag: function(event, ui) {
+        myResponse.set({
+          left: ui.position.left,
+          top: ui.position.top
+        });
+      },
+      
+      stop: function(){}
+    });
+  });
 </script>
