@@ -1,7 +1,8 @@
 <script type="text/javascript">
-  var haveHandleSize = false,
+  var halfHandleW = 6.5,
+      halfHandleH = 6.5,
       havePromptImage = false,
-      halfHandleW, halfHandleH, promptImage;
+      promptImage;
   
   $(function() {
     promptImage = $('#prompt_image');
@@ -23,12 +24,6 @@
       
       if (!!snapshot.val() && havePromptImage) {
         response.text(snapshot.val().top + ' ' + snapshot.val().left);
-        
-        if (!haveHandleSize) {
-          halfHandleW = response.width() / 2;
-          halfHandleH = response.height() / 2;
-          haveHandleSize = true;
-        }
         
         response.css("left", ((snapshot.val().left * promptImage.width()) - halfHandleW) + "px");
         response.css("top", ((snapshot.val().top * promptImage.height()) - halfHandleH) + "px");
