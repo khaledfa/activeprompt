@@ -10,15 +10,20 @@
   });
 
   $(function(){
+    var handle = $('#handle'),
+        promptImage = $('#prompt_image'),
+        halfHandleW = handle.width() / 2, 
+        halfHandleH = handle.height() / 2;
+    
     $("#handle").draggable({
-      containment: "#prompt_image_container", 
+      containment: "#prompt_image_container",
       
       start: function(){},
       
       drag: function(event, ui) {
         myResponse.set({
-          left: ui.position.left,
-          top: ui.position.top
+          left: (ui.position.left + halfHandleW) / promptImage.width(),
+          top: (ui.position.top + halfHandleH) / promptImage.height()
         });
       },
       

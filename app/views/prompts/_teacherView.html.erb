@@ -1,4 +1,13 @@
 <script type="text/javascript">
+  var haveHandleSize = false,
+      havePromptImage = false,
+      halfHandleW, halfHandleH, promptImage;
+  
+  $(function() {
+    promptImage = $('#prompt_image');
+    havePromptImage = true;
+  });
+  
   responses.on('child_added', function(snapshot) {
     var ref = snapshot.ref();
     
@@ -12,11 +21,17 @@
     ref.on('value', function(snapshot) {
       var response = $("#" + snapshot.ref().name());
       
-      if (!!snapshot.val()) {
-        response.text(snapshot.val().top + ' ' + snapshot.val().left);	
-       
-        response.css("top", snapshot.val().top + "px");
-        response.css("left", snapshot.val().left + "px");
+      if (!!snapshot.val() && havePromptImage) {
+        response.text(snapshot.val().top + ' ' + snapshot.val().left);
+        
+        if (!haveHandleSize) {
+          halfHandleW = response.width() / 2;
+          halfHandleH = response.height() / 2;
+          haveHandleSize = true;
+        }
+        
+        response.css("left", Math.round((snapshot.val().left * promptImage.width()) - halfHandleW) + "px");
+        response.css("top", Math.round((snapshot.val().top * promptImage.height()) - halfHandleH) + "px");
       } else {
         response.remove();
       }
