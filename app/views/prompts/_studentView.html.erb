@@ -1,33 +1,47 @@
 <script type="text/javascript">
-  var myResponse = responses.push();
+  var halfHandleW,
+      halfHandleH,
+      promptImage,
+      promptImageW,
+      promptImageH,
+      responses,
+      handle,
+      myResponse;
+  
+  function getPromptImageSize() {
+    promptImageW = promptImage.width();
+    promptImageH = promptImage.height();
+  }
 
   $(window).unload(function() {
     myResponse.remove();
   });
 
-  $(function(){
+  $(window).load(function() {
+    var sampleHandle = $('#sample_handle');
+    halfHandleW = sampleHandle.width() / 2;
+    halfHandleH = sampleHandle.height() / 2;
+    
+    promptImage = $('#prompt_image');
+    getPromptImageSize();
+    $(window).resize(getPromptImageSize);
+    
+    responses = new Firebase('https://activeprompt.firebaseio.com/<%=j firebaseId %>');
+    myResponse = responses.push();
+    
     $("#prompt_image_container").append("<img id=\"handle\" style=\"z-index: 1; top: 0px; left: 0px; position: absolute\" src=\"/assets/red_dot.png\"/>");
-  });
-
-  $(function(){
-    var handle = $('#handle'),
-        promptImage = $('#prompt_image'),
-        halfHandleW = 6.5,
-        halfHandleH = 6.5;
+    
+    handle = $('#handle');
     
     handle.draggable({
       containment: "#prompt_image_container",
       
-      start: function(){},
-      
       drag: function(event, ui) {
         myResponse.set({
-          left: (ui.position.left + halfHandleW) / promptImage.width(),
-          top: (ui.position.top + halfHandleH) / promptImage.height()
+          left: (ui.position.left + halfHandleW) / promptImageW,
+          top: (ui.position.top + halfHandleH) / promptImageH
         });
-      },
-      
-      stop: function(){}
+      }
     });
   });
 </script>

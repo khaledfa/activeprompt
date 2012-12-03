@@ -1,13 +1,9 @@
-<script type="text/javascript">
-var responses = new Firebase('https://activeprompt.firebaseio.com/<%= @prompt.studentUrl %>');
-</script>
+<% view = showAllResponses ? 'teacherView' : 'studentView' %>
+<%= render :partial => view, :locals => { :firebaseId => @prompt.studentUrl } %>
 
-<% if showAllResponses %>
-  <%= render 'teacherView' %>
-<% else %>
-  <%= render 'studentView' %>
-<% end %>
-
+<div style="position: absolute; top: 0; left: 0; visibility: hidden">
+  <img id="sample_handle" src="/assets/red_dot.png">
+</div>
 <div style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px;">
 	<div style="position: absolute; top: 0px; bottom: 60px; left: 0px; right: 0px; overflow: auto;">
 		<div id="prompt_image_container" style="display: inline-block;">
