@@ -1,47 +1,5 @@
 <script type="text/javascript">
-  var halfHandleW,
-      halfHandleH,
-      promptImage,
-      promptImageW,
-      promptImageH,
-      responses,
-      handle,
-      myResponse;
-  
-  function getPromptImageSize() {
-    promptImageW = promptImage.width();
-    promptImageH = promptImage.height();
-  }
+	var module = draggyModule('<%=j firebaseId %>');
 
-  $(window).unload(function() {
-    myResponse.remove();
-  });
-
-  $(window).load(function() {
-    var sampleHandle = $('#sample_handle');
-    halfHandleW = sampleHandle.width() / 2;
-    halfHandleH = sampleHandle.height() / 2;
-    
-    promptImage = $('#prompt_image');
-    getPromptImageSize();
-    $(window).resize(getPromptImageSize);
-    
-    responses = new Firebase('https://activeprompt.firebaseio.com/<%=j firebaseId %>');
-    myResponse = responses.push();
-    
-    $("#prompt_image_container").append("<img id=\"handle\" style=\"z-index: 1; top: 0px; left: 0px; position: absolute\" src=\"/assets/red_dot.png\"/>");
-    
-    handle = $('#handle');
-    
-    handle.draggable({
-      containment: "#prompt_image_container",
-      
-      drag: function(event, ui) {
-        myResponse.set({
-          left: (ui.position.left + halfHandleW) / promptImageW,
-          top: (ui.position.top + halfHandleH) / promptImageH
-        });
-      }
-    });
-  });
+	module.loadStudentView();
 </script>

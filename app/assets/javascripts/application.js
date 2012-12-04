@@ -19,3 +19,4 @@
 //= require jquery.ui.mouse
 //= require jquery.ui.draggable
 //= require jquery.ui.touch-punch
+//= require prompt_module
