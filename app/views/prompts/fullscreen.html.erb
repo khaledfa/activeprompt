@@ -1,5 +1,12 @@
-<% view = showAllResponses ? 'teacherView' : 'studentView' %>
-<%= render :partial => view, :locals => { :firebaseId => @prompt.studentUrl } %>
+<script type="text/javascript">
+	var module = draggyModule('<%=j @prompt.studentUrl %>');
+
+	<% if showAllResponses %>
+		module.loadTeacherView();
+	<% else %>
+		module.loadStudentView();
+	<% end %>
+</script>
 
 <div style="position: absolute; top: 0; left: 0; visibility: hidden">
   <img id="sample_handle" src="/assets/red_dot.png">
