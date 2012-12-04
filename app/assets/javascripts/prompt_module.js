@@ -35,33 +35,30 @@ function draggyModule(firebaseId) {
 		halfHandleH = sampleHandle.height() / 2;
 	});
 	
+	function makeHandle() {
+		return jQuery('<img/>', {
+			src: handleImageUrl,
+		});
+	}
+	
 	module.loadTeacherView = function() {
 		$(window).load(function() {
 
-		    module.responses.on('child_added', function(snapshot) {
-		      var ref = snapshot.ref();
+			module.responses.on('child_added', function(snapshot) {
+				var handle = makeHandle();
+				handle.attr('style', "opacity: 0.7; filter:alpha(opacity=70); z-index: 1; position: absolute");
+				handle.appendTo(module.promptImageContainer);
 
-		      jQuery('<img/>', {
-		        id: ref.name(),
-		        src: handleImageUrl,
-		        style: "opacity: 0.7; filter:alpha(opacity=70); z-index: 1; position: absolute",
-		        text: snapshot.val().top + ' ' + snapshot.val().left,
-		      }).appendTo("#prompt_image_container");
-
-		      ref.on('value', function(snapshot) {
-		        var response = $("#" + snapshot.ref().name());
-
-		        if (!!snapshot.val()) {
-		          response.text(snapshot.val().top + ' ' + snapshot.val().left);
-
-		          response.css("left", ((snapshot.val().left * module.promptImageW) - halfHandleW) + "px");
-		          response.css("top", ((snapshot.val().top * module.promptImageH) - halfHandleH) + "px");
-		        } else {
-		          response.remove();
-		        }
-		      });
-		    });
-		  });
+		    	snapshot.ref().on('value', function(snapshot) {
+		        	if (!!snapshot.val()) {
+		          		handle.css("left", ((snapshot.val().left * module.promptImageW) - halfHandleW) + "px");
+		          		handle.css("top", ((snapshot.val().top * module.promptImageH) - halfHandleH) + "px");
+		        	} else {
+		          		handle.remove();
+		        	}
+		    	});
+			});
+		});
 	}
 	
 	module.loadStudentView = function() {
@@ -72,9 +69,10 @@ function draggyModule(firebaseId) {
     		myResponse = module.responses.push();
     		myResponse.removeOnDisconnect();
 
-    		module.promptImageContainer.append("<img id=\"handle\" style=\"z-index: 1; top: 0px; left: 0px; position: absolute\" src=\"" + handleImageUrl + "\" />");
-    
-    		handle = $('#handle');
+			var handle = makeHandle();
+			handle.attr('style', "z-index: 1; top: 0px; left: 0px; position: absolute");
+			handle.attr('id', 'handle');
+			module.promptImageContainer.append(handle);
     
     		handle.draggable({
       			containment: "#prompt_image_container",
