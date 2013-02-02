@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk', '~> 1.3.4'
 gem 'jquery-ui-rails'
