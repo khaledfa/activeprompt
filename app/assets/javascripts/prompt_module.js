@@ -46,23 +46,34 @@ function draggyModule(firebaseId) {
         handle.appendTo(module.promptImageContainer);
 
         snapshot.ref().on('value', function(snapshot) {
-        if (!!snapshot.val()) {
-          handle.css("left", ((snapshot.val().left * module.promptImageW) - halfHandleW) + "px");
-          handle.css("top", ((snapshot.val().top * module.promptImageH) - halfHandleH) + "px");
-        } else {
-          handle.remove();
+          if (!!snapshot.val()) {
+            handle.css("left", ((snapshot.val().left * module.promptImageW) - halfHandleW) + "px");
+            handle.css("top", ((snapshot.val().top * module.promptImageH) - halfHandleH) + "px");
+          } else {
+            handle.remove();
+          }
+        });
+      });
+      
+      var clearButton = $('<button/>', {
+        text: 'Clear Old Markers',
+        style: 'position: absolute; right: 0; bottom: 0;',
+        click: function() {
+          module.responses.remove();
         }
       });
-    });
+      
+      $('#footer').append(clearButton);
    });
   }
   
   module.loadStudentView = function() {
-    var myResponse;
+    var myResponse,
+        myLeft = 0,
+        myTop = 0;
     
     $(window).load(function() {
       myResponse = module.responses.push();
-      myResponse.removeOnDisconnect();
       
       var handle = makeHandle();
       handle.attr('style', "z-index: 1; top: 0px; left: 0px; position: absolute");
@@ -70,15 +81,19 @@ function draggyModule(firebaseId) {
       module.promptImageContainer.append(handle);
       
       handle.draggable({
-       containment: "#prompt_image_container",
-       
-       drag: function(event, ui) {
-         myResponse.set({
-          left: (ui.position.left + halfHandleW) / module.promptImageW,
-          top: (ui.position.top + halfHandleH) / module.promptImageH
-        });
-       }
-     });
+        containment: "#prompt_image_container",
+        drag: function(event, ui) {
+          myLeft = (ui.position.left + halfHandleW) / module.promptImageW;
+          myTop = (ui.position.top + halfHandleH) / module.promptImageH;
+          myResponse.set({ left: myLeft, top: myTop });
+        }
+      });
+      
+      myResponse.on('value', function(snapshot) {
+        if (!snapshot.val()) {
+          myResponse.set({ left: myLeft, top: myTop });
+        }
+      });
     });
   }
   
