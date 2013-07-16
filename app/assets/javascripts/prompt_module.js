@@ -67,7 +67,6 @@ function draggyModule(firebaseId) {
   		$(window).load(function() {
     
     		myResponse = module.responses.push();
-    		myResponse.removeOnDisconnect();
 
 			var handle = makeHandle();
 			handle.attr('style', "z-index: 1; top: 0px; left: 0px; position: absolute");
