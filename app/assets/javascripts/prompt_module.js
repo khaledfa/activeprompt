@@ -19,9 +19,9 @@ function firebaseModule(firebaseRoot) {
   return module;
 }
 
-function draggyModule(firebaseId) {
+function draggyModule(studentUrl) {
 	
-  var module = firebaseModule(firebaseId),
+  var module = firebaseModule(studentUrl),
       handleImageUrl = '/assets/red_dot.png',
       halfHandleW,
       halfHandleH,
@@ -56,15 +56,51 @@ function draggyModule(firebaseId) {
         });
       });
       
-      var clearButton = $('<button/>', {
-        text: 'Clear Old Markers',
-        style: 'position: absolute; right: 0; bottom: 0;',
-        click: function() {
-          module.responses.remove();
-        }
+      // Clicking on the body hides the tools window, clicking inside the tools
+      //  window doesn't hide it. Clicking on the tools button toggles the
+      //  tools window.
+      $('body').click(function() { $('#toolsWindow').hide() });
+      $('#toolsWindow').click(function(event) { event.stopPropagation(); });
+      $('#toolsButton').click(function(event) {
+        $('#toolsWindow').toggle();
+        // Don't let this click count as a <body> click for closing the tools.
+        event.stopPropagation();
       });
       
-      $('#footer').append(clearButton);
+      // Tool window functions
+      $('#clearOld').click(function() {
+        module.responses.remove();
+      });
+      $('#editText').click(function() {
+        var edit = $(this);
+        var newText = prompt("Enter a new prompt:\nDrag the red dot to...",
+          edit.data('current'));
+        
+        if (newText !== null) {
+          $.ajax({
+            type: 'POST',
+            url: '/prompts/'+edit.data('id'),
+            data: {
+              '_method': 'put',
+              'prompt[text]': newText
+            },
+            dataType: 'text' // So we don't interpret any HTML
+          }).always(function() {
+            // We do this even if it fails, because most failures should result
+            //  from bad network connectivity. Reloading should make that
+            //  obvious to the user if it fails, and is halfway a cop-out to
+            //  avoid needing to explain the issue.
+            // Of course, if everything works, this will update the text and
+            //  somewhat indicate that a page reload might be beneficial for
+            //  the student pages (which won't have the updated text if they
+            //  were loaded earlier).
+            document.location.reload();
+          });
+        }
+      });
+      $('#studentView').click(function() {
+        window.open('/'+studentUrl, '_blank')
+      });
    });
   }
   

@@ -19,7 +19,18 @@
 	</div>
 	<div style="position: absolute; height: 60px; bottom: 0px; left: 0px; right: 0px" id="footer">
 		<p class="lead" style="text-align: center">
-		Drag the red dot to <%= @prompt.text %>
+		Drag the red dot to <%=h @prompt.text %>
 		</p>
+		<% if showAllResponses %>
+			<div id="toolsWindow" style="display: none">
+				<button id="clearOld">Clear Old Markers</button><br>
+				<button id="editText" data-current="<%=h @prompt.text %>"
+					data-id="<%=h @prompt.id %>">Edit Text</button><br>
+				<button id="studentView">Open Student View</button>
+			</div>
+			<div id="toolsButton">
+				<%= image_tag "tango_tools_32.png", alt: "Tools", title: "Tools" %>
+			</div>
+		<% end %>
 	</div>
 </div>
