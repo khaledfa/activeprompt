@@ -1,7 +1,9 @@
 function firebaseModule(firebaseRoot) {
   var module = {};
+  var promptPrefix = 'Drag the red dot to ';
   
   module.responses = new Firebase('https://activeprompt.firebaseio.com/' + firebaseRoot);
+  module.meta = new Firebase('https://activeprompt.firebaseio.com/' + firebaseRoot + '-meta');
   
   function getPromptImageSize() {
     module.promptImageW = module.promptImage.width();
@@ -12,6 +14,13 @@ function firebaseModule(firebaseRoot) {
     module.promptImageContainer = $("#prompt_image_container");
     module.promptImage = $('#prompt_image');
     getPromptImageSize();
+    
+    module.meta.child('text').on('value', function(textRef) {
+      var newText = textRef.val();
+      if (typeof newText == 'string') {
+        $('#prompt_text').text(promptPrefix + newText);
+      }
+    });
   });
   
   $(window).resize(getPromptImageSize);
@@ -85,16 +94,12 @@ function draggyModule(studentUrl) {
               'prompt[text]': newText
             },
             dataType: 'text' // So we don't interpret any HTML
-          }).always(function() {
-            // We do this even if it fails, because most failures should result
-            //  from bad network connectivity. Reloading should make that
-            //  obvious to the user if it fails, and is halfway a cop-out to
-            //  avoid needing to explain the issue.
-            // Of course, if everything works, this will update the text and
-            //  somewhat indicate that a page reload might be beneficial for
-            //  the student pages (which won't have the updated text if they
-            //  were loaded earlier).
-            document.location.reload();
+          }).done(function() {
+            // The save succeeded, update Firebase. (This will also update the UI.)
+            module.meta.child('text').set(newText);
+          }).fail(function() {
+            // The save failed, tell the user.
+            alert("We couldn't save the new prompt.\nPlease try again later.");
           });
         }
       });
