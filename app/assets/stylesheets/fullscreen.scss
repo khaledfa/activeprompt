@@ -1,5 +1,32 @@
+$toolsButtonSize: 32px;
+
 body {
   width: 100%;
   max-width: 100%;
   margin: 0px;
+}
+
+#toolsWindow {
+  display: inline-block;
+  position: absolute;
+  bottom: $toolsButtonSize;
+  right: 0;
+  background-color: #eee;
+  text-align: right;
+}
+
+button {
+  margin: 2px;
+}
+
+#toolsButton {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#toolsButton img {
+  height: $toolsButtonSize;
+  width: $toolsButtonSize;
+  cursor: pointer;
 }
